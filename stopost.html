@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Stop</title>
+    <link rel="stylesheet" href="stopots.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Jogo Stop</h1>
+        <div class="input-section">
+            <label for="letter">Digite uma letra:</label>
+            <input type="text" id="letter" maxlength="1" placeholder="Letra">
+            <button onclick="play()">Jogar</button>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+    function play() {
+    var letter = document.getElementById("letter").value.trim().toUpperCase();
+    if (!/^[A-Z]$/.test(letter)) {
+        alert("Digite uma letra válida (A-Z).");
+        return;
+    }
+
+    var categories = ["Fruta", "Animal", "Cor", "Nome", "País"]; // Lista de categorias
+    var resultElement = document.getElementById("result");
+    var result = "Resultado do jogo:<br>";
+
+    // Simulação de palavras dos jogadores (substitua com as respostas reais)
+    var player1 = ["Abacaxi", "Elefante", "Amarelo", "Alice", "Alemanha"];
+    var player2 = ["Banana", "Gato", "Azul", "Breno", "Argentina"];
+
+    result += "<br><strong>Categorias:</strong><br>";
+
+    for (var i = 0; i < categories.length; i++) {
+        result += categories[i] + ":<br>";
+        result += "Jogador 1: " + checkWord(player1[i], letter) + "<br>";
+        result += "Jogador 2: " + checkWord(player2[i], letter) + "<br>";
+        result += "<br>";
+    }
+
+    resultElement.innerHTML = result;
+}
+
+function checkWord(word, letter) {
+    if (word.startsWith(letter)) {
+        return word;
+    } else {
+        return "-";
+    }
+}
+
+</script>
